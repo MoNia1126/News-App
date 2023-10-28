@@ -5,20 +5,26 @@ class SourceResponse {
   SourceResponse({
     this.status,
     this.sources,
+    this.message,
+    this.code,
   });
 
   SourceResponse.fromJson(dynamic json) {
     status = json['status'];
+    message = json['message'];
+    code = json['code'];
     if (json['sources'] != null) {
       sources = [];
       json['sources'].forEach((v) {
-        sources?.add(Sources.fromJson(v));
+        sources?.add(Source.fromJson(v));
       });
     }
   }
 
   String? status;
-  List<Sources>? sources;
+  String? message;
+  String? code;
+  List<Source>? sources;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -38,8 +44,8 @@ class SourceResponse {
 /// language : "en"
 /// country : "us"
 
-class Sources {
-  Sources({
+class Source {
+  Source({
     this.id,
     this.name,
     this.description,
@@ -49,7 +55,7 @@ class Sources {
     this.country,
   });
 
-  Sources.fromJson(dynamic json) {
+  Source.fromJson(dynamic json) {
     id = json['id'];
     name = json['name'];
     description = json['description'];
