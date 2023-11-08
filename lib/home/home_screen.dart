@@ -3,7 +3,8 @@ import 'package:news/category/category_details.dart';
 import 'package:news/category/category_fragments.dart';
 import 'package:news/model/category.dart';
 import 'package:news/my_theme.dart';
-import 'package:news/settings/seeting_screen.dart';
+import 'package:news/news/search_delegate.dart';
+import 'package:news/settings/setting_screen.dart';
 import 'package:news/tabs/home_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -33,6 +34,18 @@ class _HomeScreenState extends State<HomeScreen> {
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             centerTitle: true,
+            actions: [
+              IconButton(
+                  onPressed: () => showSearch(
+                        context: context,
+                        delegate: NewsSearchDelegate(),
+                      ),
+                  icon: Icon(
+                    Icons.search,
+                    size: 30,
+                    color: Colors.white,
+                  ))
+            ],
             title: Text(
               selectedDrawerItem == HomeDrawer.settings
                   ? 'Settings'
